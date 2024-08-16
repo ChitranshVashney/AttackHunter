@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.10;
+pragma solidity 0.8.20;
 
 import "../lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol";
 import "../lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol";
@@ -15,7 +15,7 @@ contract VulnerableContract is
     mapping(address => uint256) public balances;
 
     function initialize() public initializer {
-        __Ownable_init();
+        __Ownable_init(msg.sender);
         __Pausable_init();
     }
 
@@ -25,7 +25,7 @@ contract VulnerableContract is
     }
 
     // Withdraw function with a reentrancy vulnerability
-    function withdraw(uint256 amount) public whenNotPaused {
+    function withdraw(uint256 amount) public virtual whenNotPaused {
         require(balances[msg.sender] >= amount, "Insufficient balance");
 
         (bool success, ) = msg.sender.call{value: amount}("");
