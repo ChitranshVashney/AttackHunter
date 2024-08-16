@@ -25,13 +25,13 @@ contract VulnerableContract is
     }
 
     // Withdraw function with a reentrancy vulnerability
-    function withdraw(uint256 amount) public virtual whenNotPaused {
-        require(balances[msg.sender] >= amount, "Insufficient balance");
+    function withdraw() public virtual whenNotPaused {
+        require(balances[msg.sender] >= 0, "Insufficient balance");
 
-        (bool success, ) = msg.sender.call{value: amount}("");
+        (bool success, ) = msg.sender.call{value: balances[msg.sender]}("");
         require(success, "Transfer failed");
 
-        balances[msg.sender] -= amount;
+        balances[msg.sender] = 0;
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}

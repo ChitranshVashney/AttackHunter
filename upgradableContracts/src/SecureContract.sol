@@ -5,14 +5,14 @@ import "./VulnerableContract.sol";
 
 contract SecureContract is VulnerableContract {
     // Overridden withdraw function to fix the reentrancy vulnerability
-    function withdraw(uint256 amount) public override whenNotPaused {
-        require(balances[msg.sender] >= amount, "Insufficient balance");
+    function withdraw() public override whenNotPaused {
+        require(balances[msg.sender] >= 0, "Insufficient balance");
 
         // Effects: Update the balance before the external call
-        balances[msg.sender] -= amount;
+        balances[msg.sender] = 0;
 
         // Interaction: Make the external call
-        (bool success, ) = msg.sender.call{value: amount}("");
+        (bool success, ) = msg.sender.call{value: balances[msg.sender]}("");
         require(success, "Transfer failed");
     }
 }
