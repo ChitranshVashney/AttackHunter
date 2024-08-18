@@ -123,11 +123,11 @@ cd AttackHunter/upgradableContracts
 forge install
 ```
 
-3. Compile the Contracts
-   Compile the smart contracts to ensure everything is set up correctly.
+3. Test the Contracts
+   Test the smart contracts to ensure everything is set up correctly.
 
 ```
-forge build
+forge test
 ```
 
 4. Add `.env` required variable
