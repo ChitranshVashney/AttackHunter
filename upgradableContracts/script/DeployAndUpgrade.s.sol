@@ -16,11 +16,11 @@ contract Deploy is Script {
     function run() public {
         uint256 pk = vm.envUint("PRIVATE_KEY");
         console.log("Deploying contracts with address", vm.addr(pk));
-
+        vm.startBroadcast(pk);
         _deployInitialVersion();
         //_upgradeImplementation();
         //_deployAttacker();
-
+        vm.stopBroadcast();
         console.log("Contracts deployed");
     }
 

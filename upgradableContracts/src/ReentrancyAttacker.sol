@@ -5,7 +5,7 @@ import "../src/UUPSProxy.sol";
 contract ReentrancyAttacker {
     VulnerableContract public vulnerableContract;
     UUPSProxy public proxy;
-    uint256 public attackAmount = 1 ether;
+    uint256 public attackAmount = 0.001 ether;
 
     constructor(address _proxy) {
         proxy = UUPSProxy(payable(_proxy));
