@@ -21,21 +21,22 @@ The off-chain system architecture is designed to monitor blockchain transactions
   The system listens to pending transactions using Alchemy’s WebSocket API. It extracts details such as sender, receiver, value, and input data, and then passes the transaction for further analysis.
 
 ```js
-Copy code
-alchemy.ws.on({
-method: AlchemySubscription.PENDING_TRANSACTIONS,
-}, (tx) => {
-// Process transaction
-});
+alchemy.ws.on(
+  {
+    method: AlchemySubscription.PENDING_TRANSACTIONS,
+  },
+  (tx) => {
+    // Process transaction
+  }
+);
 ```
 
 - Transaction Simulation:
   Before executing a transaction, the system simulates it to predict changes on the blockchain. This helps identify vulnerabilities before they are exploited.
 
 ```js
-Copy code
 async function txSimulationasync(tx) {
-// Simulate transaction
+  // Simulate transaction
 }
 ```
 
@@ -43,9 +44,8 @@ async function txSimulationasync(tx) {
   If the system detects an attack, it triggers an email notification to alert the concerned parties.
 
 ```js
-Copy code
 async function sendNotificationEmail(tx, sim) {
-// Send email alert
+  // Send email alert
 }
 ```
 
@@ -53,9 +53,8 @@ async function sendNotificationEmail(tx, sim) {
   The system performs periodic security checks using Slither to analyze the smart contract code and generate reports.
 
 ```js
-Copy code
 async function runSlitherAnalysis() {
-// Run Slither analysis
+  // Run Slither analysis
 }
 ```
 
