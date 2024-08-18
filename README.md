@@ -40,5 +40,5 @@ AttackHunter/
 
 ## Setup
 
-- [Upgradeable Smart Contract](https://github.com/ChitranshVashney/AttackHunter/blob/master/upgradableContracts/README.md)
-- [Off-Chain Simulation](https://github.com/ChitranshVashney/AttackHunter/blob/master/simulation/README.md)
+- [Upgradeable Smart Contract](https://github.com/ChitranshVashney/AttackHunter/blob/master/upgradableContracts/README.md#setup-instructions)
+- [Off-Chain Simulation](https://github.com/ChitranshVashney/AttackHunter/blob/master/simulation/README.md#setup-instructions)
