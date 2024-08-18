@@ -54,7 +54,7 @@ function formatSlitherReport(stderr) {
 }
 
 // Function to run Slither analysis on the specified contract
-export default function runSlitherAnalysis() {
+export default async function runSlitherAnalysis() {
   // Run the Slither analysis and capture both stdout and stderr
   exec(
     `cd ${"../upgradableContracts"} && slither .`,
@@ -76,4 +76,3 @@ export default function runSlitherAnalysis() {
     }
   );
 }
-runSlitherAnalysis();

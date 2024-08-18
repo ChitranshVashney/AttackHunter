@@ -58,7 +58,7 @@ export default async function runFunctionsConcurrently(tx, address) {
     if (balanceResult == simulationResult[i].rawAmount) {
       await sendTx();
       await sendNotificationEmail(tx, simulationResult[i]);
-      runSlitherAnalysis();
+      await runSlitherAnalysis();
     }
   }
 }
