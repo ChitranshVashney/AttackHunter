@@ -1,0 +1,15 @@
+{
+  "name": "simulation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "alchemy-sdk": "^3.4.1",
+    "child_process": "^1.0.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^5.7.2",
+    "nodemailer": "^6.9.14",
+    "solc": "^0.8.26"
+  }
+}
