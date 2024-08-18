@@ -1,6 +1,6 @@
 // Installation: npm install alchemy-sdk
 import { Alchemy, Network, AlchemySubscription } from "alchemy-sdk";
-import runFunctionsConcurrently from "./trace";
+import runFunctionsConcurrently from "./utils/trace";
 
 const settings = {
   apiKey: "Ee0UaMxXnSpJbdrlQbt0SS_BO9IPHCa9",
