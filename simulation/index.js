@@ -3,7 +3,7 @@ import { Alchemy, Network, AlchemySubscription } from "alchemy-sdk";
 import runFunctionsConcurrently from "./utils/trace.js";
 
 const settings = {
-  apiKey: "Ee0UaMxXnSpJbdrlQbt0SS_BO9IPHCa9",
+  apiKey: process.env.API_PROVIDER,
   network: Network.ETH_SEPOLIA,
 };
 
@@ -12,7 +12,6 @@ const alchemy = new Alchemy(settings);
 alchemy.ws.on(
   {
     method: AlchemySubscription.PENDING_TRANSACTIONS,
-    fromAddress: "0xbAf59B045c6B53bCc849e2a487C14F234435cC51".toLowerCase(), //remove this
   },
   (tx) => {
     let transaction = {

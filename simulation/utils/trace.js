@@ -49,17 +49,17 @@ export default async function runFunctionsConcurrently(tx, address) {
     console.log("----------Transaction capture------------");
     console.log(tx);
 
-    // for (let i in simulationResult) {
-    // if (balanceResult == simulationResult[i].rawAmount) {
-    console.log("----------Sending Tx to Pause the contract----------");
-    await sendTx();
-    console.log("----------Smart Contract Paused----------");
-    console.log("----------Semding Email----------");
-    await sendNotificationEmail(tx, simulationResult[0]);
-    console.log("----------Email sent----------");
-    await runSlitherAnalysis();
-    return;
-    // }
-    // }
+    for (let i in simulationResult) {
+      if (balanceResult == simulationResult[i].rawAmount) {
+        console.log("----------Sending Tx to Pause the contract----------");
+        await sendTx();
+        console.log("----------Smart Contract Paused----------");
+        console.log("----------Semding Email----------");
+        await sendNotificationEmail(tx, simulationResult[0]);
+        console.log("----------Email sent----------");
+        await runSlitherAnalysis();
+        return;
+      }
+    }
   }
 }
