@@ -42,3 +42,10 @@ AttackHunter/
 
 - [Upgradeable Smart Contract](https://github.com/ChitranshVashney/AttackHunter/blob/master/upgradableContracts/README.md#setup-instructions)
 - [Off-Chain Simulation](https://github.com/ChitranshVashney/AttackHunter/blob/master/simulation/README.md#setup-instructions)
+
+### Contract Addresses
+
+- [Upgradable Smart Contract](https://sepolia.etherscan.io/address/0xa7c73b5fbd3a38c1e4c3e2749d570e6da9f0c811)
+- [Upgrading Smart Contract tx](https://sepolia.etherscan.io/tx/0x5eadcb92b3bb49989795134141ce5303cced204d54996ca2f6766093b1e9508c)
+- [Failed attack Tx](https://sepolia.etherscan.io/tx/0xb41b0d8de6eb3f921a9e81bb5858c507057c409875fefae5c22e3a8b6b20a6b9)
+- [Smart Contract Pause](https://sepolia.etherscan.io/tx/0xe2594fb98f6964f48408b7fbeb3d863649018b1e935be28a3443093bda44930b)
