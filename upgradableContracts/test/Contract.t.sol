@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.10;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.20;
 
 import "forge-std/Test.sol";
 import "../src/VulnerableContract.sol";
 import "../src/SecureContract.sol";
 import "../src/UUPSProxy.sol";
-import "../src/ReentrancyAttacker.sol";
+import {ReentrancyAttacker} from "../src/ReentrancyAttacker.sol";
 
 contract VulnerableContractTest is Test {
     VulnerableContract public impl;

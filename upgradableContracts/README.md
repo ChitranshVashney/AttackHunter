@@ -142,7 +142,7 @@ ETHERSCAN_API_KEY=
    Deploy the contracts using the provided script.
 
 ```
-forge script script/Deploy.s.sol --broadcast --verify --rpc-url YOUR_RPC_URL
+forge script --chain sepolia script/DeployAndUpgrade.s.sol:Deploy --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv
 ```
 
 6. Simulate the Attack

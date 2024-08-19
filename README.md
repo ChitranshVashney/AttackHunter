@@ -1,14 +1,14 @@
 # AttackHunter: Smart Contract with Vulnerability and Exploit Detection
 
 This project demonstrates an upgradeable smart contract with built-in vulnerability detection and prevention mechanisms. It showcases a comprehensive system that integrates both on-chain and off-chain components to safeguard the smart contract from attacks.
-![alt text](image.png)
+![alt text](image-1.png)
 
 ## Overview
 
 This repository contains two main components:
 
 1. **Off-Chain Simulation**: Off-chain microservices are responsible for detecting potential vulnerabilities in real-time. These services monitor Ethereum transactions, simulate outcomes, and trigger preventive actions such as sending notifications and running security analyses.
-   ![alt text](image-1.png)
+   ![alt text](image.png)
 2. **Upgradeable Smart Contract**: Deployed using the UUPS (Universal Upgradeable Proxy Standard) pattern, this contract includes a deliberately introduced reentrancy vulnerability to simulate an attack scenario. It features a mechanism for upgrading the contract to fix vulnerabilities without affecting user data.
    ![alt text](image-2.png)
 

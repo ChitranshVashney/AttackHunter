@@ -18,17 +18,13 @@ async function txSimulationasync(tx) {
     }),
   };
 
-  const result = fetch(
+  const result = await fetch(
     "https://eth-sepolia.g.alchemy.com/v2/cVwdK73itOgjoDvxZcN4Z4oxJvqGfca-",
     options
-  )
-    .then((response) => response.json())
-    .then((response) => {
-      return response.result.changes;
-    })
-    .catch((err) => console.error(err));
-
-  return result;
+  );
+  let jsonFormat = await result.json();
+  // console.log(jsonFormat.result.changes);
+  return jsonFormat.result.changes;
 }
 
 async function getEthBalance(address) {
@@ -47,18 +43,23 @@ async function getEthBalance(address) {
 }
 
 export default async function runFunctionsConcurrently(tx, address) {
-  const [simulationResult, balanceResult] = await Promise.all([
-    txSimulationasync(tx),
-    getEthBalance(address),
-  ]);
-  console.log("Simulation Result:", simulationResult);
-  console.log("Balance Result:", balanceResult);
+  const simulationResult = await txSimulationasync(tx);
+  const balanceResult = await getEthBalance(address);
+  if (simulationResult.length > 0) {
+    console.log("----------Transaction capture------------");
+    console.log(tx);
 
-  for (let i in simulationResult) {
-    if (balanceResult == simulationResult[i].rawAmount) {
-      await sendTx();
-      await sendNotificationEmail(tx, simulationResult[i]);
-      await runSlitherAnalysis();
-    }
+    // for (let i in simulationResult) {
+    // if (balanceResult == simulationResult[i].rawAmount) {
+    console.log("----------Sending Tx to Pause the contract----------");
+    await sendTx();
+    console.log("----------Smart Contract Paused----------");
+    console.log("----------Semding Email----------");
+    await sendNotificationEmail(tx, simulationResult[0]);
+    console.log("----------Email sent----------");
+    await runSlitherAnalysis();
+    return;
+    // }
+    // }
   }
 }

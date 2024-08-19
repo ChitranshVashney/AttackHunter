@@ -1,7 +1,16 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.10;
-import "../src/VulnerableContract.sol";
-import "../src/UUPSProxy.sol";
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.20;
+
+interface VulnerableContract {
+    function deposit() external payable;
+
+    function withdraw() external;
+
+    function balances(address account) external view returns (uint256);
+}
+
+interface UUPSProxy {}
+
 contract ReentrancyAttacker {
     VulnerableContract public vulnerableContract;
     UUPSProxy public proxy;
