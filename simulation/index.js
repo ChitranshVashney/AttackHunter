@@ -1,6 +1,8 @@
 // Installation: npm install alchemy-sdk
 import { Alchemy, Network, AlchemySubscription } from "alchemy-sdk";
 import runFunctionsConcurrently from "./utils/trace.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const settings = {
   apiKey: process.env.API_PROVIDER,
