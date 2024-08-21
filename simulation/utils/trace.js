@@ -2,6 +2,8 @@ import { ethers } from "ethers";
 import sendNotificationEmail from "./mail.js";
 import sendTx from "./rawTx.js";
 import runSlitherAnalysis from "./reporting.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 async function txSimulationasync(tx) {
   const options = {
@@ -19,11 +21,14 @@ async function txSimulationasync(tx) {
   };
 
   const result = await fetch(
-    "https://eth-sepolia.g.alchemy.com/v2/cVwdK73itOgjoDvxZcN4Z4oxJvqGfca-",
+    `https://eth-sepolia.g.alchemy.com/v2/${process.env.API_PROVIDER}`,
     options
   );
   let jsonFormat = await result.json();
-  // console.log(jsonFormat.result.changes);
+  if (jsonFormat.result.error != null) {
+    console.log(jsonFormat.result.error);
+    return error;
+  }
   return jsonFormat.result.changes;
 }
 
@@ -46,11 +51,13 @@ export default async function runFunctionsConcurrently(tx, address) {
   const simulationResult = await txSimulationasync(tx);
   const balanceResult = await getEthBalance(address);
   if (simulationResult.length > 0) {
-    console.log("----------Transaction capture------------");
-    console.log(tx);
-
     for (let i in simulationResult) {
-      if (balanceResult == simulationResult[i].rawAmount) {
+      if (
+        balanceResult == simulationResult[i].rawAmount && //if trasaction take all the balance of smart contract
+        simulationResult[i].from.toLowerCase() == address.toLowerCase() // address of smart contract is eqal to address that drain funds
+      ) {
+        console.log("----------Transaction capture------------");
+        console.log(tx);
         console.log("----------Sending Tx to Pause the contract----------");
         await sendTx();
         console.log("----------Smart Contract Paused----------");
