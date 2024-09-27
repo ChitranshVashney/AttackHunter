@@ -14,6 +14,7 @@ const alchemy = new Alchemy(settings);
 alchemy.ws.on(
   {
     method: AlchemySubscription.PENDING_TRANSACTIONS,
+    // fromAddress: "",
   },
   (tx) => {
     let transaction = {
@@ -22,6 +23,10 @@ alchemy.ws.on(
       value: tx.value,
       data: tx.input,
     };
+    console.log(
+      "---------------------------------Mempool Tx-----------------------------------------------"
+    );
+    console.log(transaction);
     runFunctionsConcurrently(
       transaction,
       "0xA7C73b5fbd3A38C1E4C3E2749D570e6DA9f0C811".toLowerCase()

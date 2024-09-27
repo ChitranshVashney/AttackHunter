@@ -25,11 +25,16 @@ async function txSimulationasync(tx) {
     options
   );
   let jsonFormat = await result.json();
-  if (jsonFormat.result.error != null) {
-    console.log(jsonFormat.result.error);
-    return error;
+  if (jsonFormat.result) {
+    console.log("Result:", jsonFormat.result);
+    return jsonFormat.result.changes;
+  } else if (jsonFormat.error) {
+    console.log("Error:", jsonFormat.error.message);
+    return [];
+  } else {
+    console.log("No result or error found in the response.");
+    return [];
   }
-  return jsonFormat.result.changes;
 }
 
 async function getEthBalance(address) {
@@ -53,6 +58,7 @@ export default async function runFunctionsConcurrently(tx, address) {
   if (simulationResult.length > 0) {
     for (let i in simulationResult) {
       if (
+        // true
         balanceResult == simulationResult[i].rawAmount && //if trasaction take all the balance of smart contract
         simulationResult[i].from.toLowerCase() == address.toLowerCase() // address of smart contract is eqal to address that drain funds
       ) {
@@ -69,4 +75,7 @@ export default async function runFunctionsConcurrently(tx, address) {
       }
     }
   }
+  console.log(
+    "--------------------------------------------------------------------------------"
+  );
 }
